@@ -20,6 +20,35 @@
         <ul id="book-list"></ul>
       </div>
     </div>
+    <div id="modal-container" class="modal-hidden">
+      <div id="modal">
+        <form action="#">
+          <div class="form-group">
+            <label for="book-title">Title</label>
+            <input type="text" name="book-title-input" id="book-title-input" placeholder="The Hobbit">
+          </div>
+          <div class="form-group">
+            <label for="book-author-input">Author</label>
+            <input type="text" name="book-author" id="book-author-input" placeholder="J.R.R. Tolkien">
+          </div>
+          <div class="form-group">
+            <label for="book-year-input">Year Published</label>
+            <input type="text" name="book-year" id="book-year-input" placeholder="1937">
+          </div>
+          <div class="form-group">
+            <label for="book-description-input">Description</label>
+            <input type="text" name="book-description" id="book-description-input" placeholder="Bilbo goes on a grand adventure.">
+          </div>
+          <div class="form-group">
+            <label for="book-image-link-input">Link to Cover Image</label>
+            <input type="text" name="book-image-link" id="book-image-link-input" placeholder="www.thehobbit.com/cover.png">
+          </div>
+          <br>
+          <button id="submit-button" type="submit">Add Book</button>
+          <button id="cancel-button">Cancel</button>
+        </form>
+      </div>
+    </div>
   </div>
 
   <!-- Template for books in library -->

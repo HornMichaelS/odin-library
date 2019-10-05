@@ -28,7 +28,23 @@ function addBookToLibrary() {
 }
 
 function showAddBookModal() {
-  
+  let modalContainer = document.getElementById('modal-container');
+  let modal = document.getElementById('modal');
+
+  modalContainer.classList.remove('modal-hidden');
+  setTimeout(function () {
+    modal.classList.add('centered');
+  }, 10);
+}
+
+function hideAddBookModal() {
+  let modalContainer = document.getElementById('modal-container');
+  let modal = document.getElementById('modal');
+
+  modal.classList.remove('centered');
+  setTimeout(function () {
+    modalContainer.classList.add('modal-hidden');
+  }, 300);
 }
 
 function createNewBookElement() {
