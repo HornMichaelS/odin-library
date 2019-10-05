@@ -1,0 +1,107 @@
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#root {
+  height: 100%;
+  background-image: linear-gradient(30deg, rgb(132, 255, 204), #2377ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.library {
+  min-height: 85vh;
+  width: 650px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  padding: 20px;
+}
+
+.library-header {
+  margin-bottom: 20px;
+}
+
+.header-text {
+  margin: 0;
+  font-weight: 500;
+  font-color: #555;
+}
+
+#book-list {
+  padding: 0;
+  margin: 25px 0;
+}
+
+.book-item {
+  list-style: none;
+  display: flex;
+  justify-content: stretch;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.book-item img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.book-info {
+  padding-left: 16px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.book-info p {
+  margin: 0;
+}
+
+.book-title {
+  margin: 0;
+  font-size: 14pt;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.title-author-container>.book-author {
+  margin-top: 6px;
+  font-size: 13pt;
+  color: #666;
+}
+
+.year {
+  font-size: 11pt;
+  color: #888;
+}
+
+.book-description {
+  margin-top: 10px !important;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.book-controls {
+  flex-shrink: 1;
+  flex-grow: 0;
+}
+
+button {
+  width: 75px;
+  height: 30px;
+  margin-bottom: 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  cursor: pointer;
+}

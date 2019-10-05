@@ -10,8 +10,38 @@
 </head>
 
 <body>
+  <div id="root">
+    <div class="library">
+      <div class="library-header">
+        <h1 class="header-text">My Library</h1>
+      </div>
+      <hr>
+      <div id="library-content-container">
+        <ul id="book-list"></ul>
+      </div>
+    </div>
+  </div>
 
-  <script src="js/index.js"></script>
+  <!-- Template for books in library -->
+  <li id="book-template" class="book-item" style="display: none">
+    <img src="" alt="">
+    <div class="book-info">
+      <div class="title-author-container">
+        <h2 class="book-title"></h2>
+        <span class="year">${year}</span>
+        <p class="book-author">${author}</p>
+      </div>
+      <p class="book-description">
+        ${description}
+      </p>
+    </div>
+    <div class="book-controls">
+      <button class="have-read-button">Read</button>
+      <button class="delete-button">Delete</button>
+    </div>
+  </li>
+  
+  <script src="scripts/index.js"></script>
 </body>
 
 </html>
