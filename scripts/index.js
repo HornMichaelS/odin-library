@@ -73,4 +73,14 @@ function render() {
   });
 }
 
+const showFormButton = document.getElementById('show-form-button');
+showFormButton.addEventListener('click', function () {
+  showAddBookModal();
+});
+
+const cancelButton = document.getElementById('cancel-button');
+cancelButton.addEventListener('click', function () {
+  hideAddBookModal();
+});
+
 render();

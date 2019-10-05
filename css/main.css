@@ -149,6 +149,7 @@ button:hover {
 
 #modal-container.modal-hidden {
   display: none;
+  background-color: transparent;
 }
 
 #modal {
