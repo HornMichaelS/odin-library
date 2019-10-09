@@ -26,27 +26,27 @@
         <form action="#">
           <div class="form-group">
             <label for="book-title">Title</label>
-            <input type="text" name="book-title-input" id="book-title-input" placeholder="The Hobbit">
+            <input type="text" name="title" id="book-title-input" placeholder="The Hobbit" required>
           </div>
           <div class="form-group">
             <label for="book-author-input">Author</label>
-            <input type="text" name="book-author" id="book-author-input" placeholder="J.R.R. Tolkien">
+            <input type="text" name="author" id="book-author-input" placeholder="J.R.R. Tolkien" required>
           </div>
           <div class="form-group">
             <label for="book-year-input">Year Published</label>
-            <input type="text" name="book-year" id="book-year-input" placeholder="1937">
+            <input type="number" name="year" id="book-year-input" placeholder="1937" required>
           </div>
           <div class="form-group">
             <label for="book-description-input">Description</label>
-            <input type="text" name="book-description" id="book-description-input" placeholder="Bilbo goes on a grand adventure.">
+            <input type="text" name="description" id="book-description-input" placeholder="Bilbo goes on a grand adventure.">
           </div>
           <div class="form-group">
             <label for="book-image-link-input">Link to Cover Image</label>
-            <input type="text" name="book-image-link" id="book-image-link-input" placeholder="www.thehobbit.com/cover.png">
+            <input type="url" name="image-link" id="book-image-link-input" placeholder="www.thehobbit.com/cover.png">
           </div>
           <br>
           <button id="submit-button" type="submit">Add Book</button>
-          <button id="cancel-button">Cancel</button>
+          <button id="cancel-button" type="button">Cancel</button>
         </form>
       </div>
     </div>
@@ -54,7 +54,7 @@
 
   <!-- Template for books in library -->
   <li id="book-template" class="book-item" style="display: none">
-    <img src="" alt="">
+    <img src="" alt="" class="no-cover">
     <div class="book-info">
       <div class="title-author-container">
         <h2 class="book-title"></h2>
