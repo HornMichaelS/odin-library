@@ -19,14 +19,19 @@ html, body {
   border-radius: 10px;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
   background-color: white;
-  padding: 20px;
+  padding: 20px 0 20px 20px;
 }
 
 .library-header {
   margin-bottom: 20px;
+  margin-right: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+hr {
+  margin-right: 20px;
 }
 
 #show-form-button {
@@ -48,6 +53,12 @@ html, body {
   margin: 0;
   font-weight: 500;
   font-color: #555;
+}
+
+#library-content-container {
+  max-height: 80vh;
+  overflow-y: scroll;
+  padding-right: 20px;
 }
 
 #book-list {
