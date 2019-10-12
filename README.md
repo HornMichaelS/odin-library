@@ -21,3 +21,4 @@ A couple of ways I'd like to improve on this app:
 1. Change the render method so that it only rerenders what's necessary, rather than updating the whole library.
 2. Add persistent storage.
 3. Add the ability to edit books.
+4. Improve display on mobile.
