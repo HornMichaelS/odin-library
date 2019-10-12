@@ -45,56 +45,6 @@ const myLibrary = [];
  * VIEW
  */
 
-function AddBookForm() {
-  /** @type {HTMLFormElement} */
-  const form = document.querySelector('#modal>form');
-  const inputs = form.elements;
-
-  this.getTitle = function() {
-    return inputs['title'].value;
-  }
-
-  this.getAuthor = function() {
-    return inputs['author'].value;
-  }
-
-  this.getYear = function() {
-    return inputs['year'].value;
-  }
-
-  this.getDescription = function() {
-    return inputs['description'].value;
-  }
-
-  this.getImageLink = function() {
-    return inputs['image-link'].value;
-  }
-
-  this.getBookFromFormValues = function() {
-    return PersistedBookFactory.createBook({
-      title: this.getTitle(),
-      author: this.getAuthor(),
-      year: this.getYear(),
-      description: this.getDescription(),
-      imgSource: this.getImageLink(),
-    });
-  }
-
-  this.clear = function() {
-    form.reset();
-  }
-}
-
-function addBookToLibrary() {
-  let form = new AddBookForm();
-  let book = form.getBookFromFormValues();
-  form.clear();
-
-  myLibrary.push(book);
-  render();
-  hideAddBookModal();
-}
-
 const controllerModule = (function (libraryModel) {
   let delegateView = null;
   let model = libraryModel;
@@ -131,6 +81,14 @@ const controllerModule = (function (libraryModel) {
     }
   }
 
+  function handleSubmitButtonClick(bookProperties) {
+    model = [...model, PersistedBookFactory.createBook(bookProperties)];
+    if (delegateView) {
+      delegateView.shouldDismissAddBookView();
+      delegateView.modelDidUpdate(model);
+    }
+  }
+
   function handleCancelButtonClick() {
     if (delegateView) {
       delegateView.shouldDismissAddBookView();
@@ -155,12 +113,21 @@ const controllerModule = (function (libraryModel) {
     }
   }
 
+  function handleDeleteButtonClick(bookID) {
+    model = model.filter((book) => book.id !== bookID);
+    if (delegateView) {
+      delegateView.modelDidUpdate(model);
+    }
+  }
+
   return {
     init, 
     setDelegateView, 
     handleShowFormButtonClick,
+    handleSubmitButtonClick,
     handleCancelButtonClick,
     handleHaveReadButtonClick,
+    handleDeleteButtonClick,
   };
 })(myLibrary);
 
@@ -172,11 +139,13 @@ const viewModule = (function (controller) {
   let libraryDOMNode;
   let modalContainerDOMNode;
   let modalDOMNode;
+  let formDOMNode;
 
   (function init() {
     libraryDOMNode = document.getElementById('book-list');
-    modalContainer = document.getElementById('modal-container');
-    modal = document.getElementById('modal');
+    modalContainerDOMNode = document.getElementById('modal-container');
+    modalDOMNode = document.getElementById('modal');
+    formDOMNode = document.querySelector('form');
 
     controller.setDelegateView({
       modelDidUpdate: function (libraryModel) {
@@ -212,8 +181,27 @@ const viewModule = (function (controller) {
     const submitButton = document.getElementById('submit-button');
     const cancelButton = document.getElementById('cancel-button');
 
-    submitButton.onclick = controller.handleSubmitButtonClick;
+    submitButton.onclick = function (e) {
+      e.preventDefault();
+      const bookProperties = getNewBookPropertiesFromForm();
+      controller.handleSubmitButtonClick(bookProperties);
+    };
+
     cancelButton.onclick = controller.handleCancelButtonClick;
+  }
+
+  function getNewBookPropertiesFromForm() {
+    /** @type {HTMLFormControlsCollection} */
+    const controls = formDOMNode.elements;
+    const bookProperties = {};
+
+    for (let i = 0; i < controls.length; i++) {
+      /** @type {HTMLInputElement} */
+      const control = controls[i];
+      bookProperties[control.name] = control.value;
+    }
+
+    return bookProperties;
   }
 
   function clearLibraryDOMNode() {
@@ -278,7 +266,7 @@ const viewModule = (function (controller) {
   }
 
   function showAddBookModal() {
-    modalContainer.classList.remove('modal-hidden');
+    modalContainerDOMNode.classList.remove('modal-hidden');
 
     setTimeout(function () {
       modal.classList.add('centered');
@@ -286,12 +274,11 @@ const viewModule = (function (controller) {
   }
   
   function hideAddBookModal() {
-    let form = new AddBookForm();
-    form.clear();
+    formDOMNode.reset();
   
     modal.classList.remove('centered');
     setTimeout(function () {
-      modalContainer.classList.add('modal-hidden');
+      modalContainerDOMNode.classList.add('modal-hidden');
     }, 300);
   }
 })(controllerModule);

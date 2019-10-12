@@ -153,6 +153,13 @@ button.green-button {
   font-wight: bold;
   background-color: rgb(53, 196, 53);
   border: none;
+  font-weight: bolder;
+}
+
+.green-button span.have-read-button-title::after {
+  content: "✓";
+  font-weight: bolder;
+  margin-left: 5px;
 }
 
 #modal-container {
